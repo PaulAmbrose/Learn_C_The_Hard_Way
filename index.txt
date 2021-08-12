@@ -1,2 +1,3 @@
 ex1 - amending compiler to compile C / diff command
 ex2 - basic makefiles
+ex3 - formatted printing
