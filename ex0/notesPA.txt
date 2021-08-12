@@ -1,2 +1,5 @@
-##setting up a debian enviroment to compile C code
+//setting up a debian enviroment to compile C code
 sudo apt-get install build-essential
+
+//comparing files - bash
+$ diff filepath1 filepath2
