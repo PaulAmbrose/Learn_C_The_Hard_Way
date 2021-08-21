@@ -1,0 +1,50 @@
+Starting/stopping
+
+    run ARGS — start the program with the arguments ARGS
+    run ARGS <input.txt — start the program with the arguments ARGS, reading input from the file input.txt
+    kill — terminate the current program
+    stepi — step forward by one instruction
+    nexti — step forward by one instruction, skipping any called function
+    continue — run until breakpoint
+
+Breakpoint related
+
+    b function — set a breakpoint at entry to a particular function
+    b *0x123456 — set a breakpoint at the instruction at address 0x123456
+    watch *(int*)0x123456 — set a “watchpoint” that will trigger whenever memory at 0x123456 is updated
+    watch *(int*)0x123456 == 42 — set a “watchpoint” that will trigger whenever the int at address 0x123456 equals 42 (assuming it currently is not 42)
+    rwatch *(int*)0x123456 — set a “watchpoint” that will trigger whnever the program reads memory at 0x123456
+    info breakpoints, info watchpoints — view all active breakpoints/watchpoints
+    delete ID — clear breakpoint/watchpoint with the specified ID
+
+Register examination
+
+    info registers — view all general purpose registers
+    info all-registers — view all registers, even floating point registers, segment registers, etc.
+
+Memory examination
+
+    x/100bx 0x12345678 — print out 100 bytes of memory starting at address 0x12345678, as a sequence of 1-byte hexadecimal numbers
+    x/2gx 0x12345678 — print out 16 bytes of memory starting at address 0x12345678, as a two eight-byte hexdecimal numbers
+    x/s 0x12345678 — print out memory starting at address 0x12345678 as a \0-terminated string
+    x/wd 0x12345678 — print out memory at address 0x12345678 as a single 4-byte decimal integer
+
+    x/hd 0x12345678 — print out memory at address 0x12345678 as a single 2-byte decimal integer
+
+    x/100bx $rsi — print out 100 bytes of memory starting at the address in %rsi (you can similarly use $rsi in place of an address in the commands above)
+    print *((long*) 0x12345678) — output the value of address 0x12345678 as a long (awkward way)
+        can also use an arbitrary C expression
+    display *((long*) 0x12345678) — output the value of address 0x12345678 as a long every time the program stops
+    undisplay ID — unset a previous display command
+        info display lists active IDs
+
+Disassembly related
+
+    disassemble function — disassemble a function by name
+    disassemble 0x10000,0x10050 — disassemble whatever’s in memory between addresses 0x10000 and 0x10050`
+    x/6i 0x10000 — disassemble 6 instructions starting at address 0x10000
+    set disassembly-flavor att, set disassembly-flavor intel — switch between AT&T and Intel syntax assembly
+
+Segfault related
+
+    p $_siginfo._sifields._sigfault.si_addr — (on Linux) Usually print out invalid memory access location after a segfault. Note that this may print out something bogus if a segfault did not occur. It also seems to sometimes print out 0x0 instead of the actual faulting address. A more tedious but more universal way to find out the faulting address is to examine the instruction that triggered the segfault with x/i $rip, and the register values it is using with info registers.
