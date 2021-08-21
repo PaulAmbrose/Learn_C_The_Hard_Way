@@ -1,1 +1,3 @@
-splint filename
+Provides detailed feedback on C code and issues with the code.
+
+>>splint filename
