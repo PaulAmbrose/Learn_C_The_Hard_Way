@@ -1,1 +1,1 @@
-
+gdb --batch --ex r ex bt --ex q --args <program name>
