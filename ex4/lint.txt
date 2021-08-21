@@ -1,3 +1,6 @@
 Provides detailed feedback on C code and issues with the code.
 
+This needs to be installed:
+sudo apt install splint
+
 >>splint filename
