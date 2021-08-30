@@ -1,5 +1,7 @@
 52 Excercises
 
 Aim to complete and be writing programs regularly in C by the end of the year.
-To acheieve this I will need to complete 3 chapters a week.  Later chapters may be harder there for aiming for five this week.  Chapters 4-8 inclusive.
+To acheieve this I will need to complete 3 chapters a week.  Later chapters may be harder there for aiming for five this week.  
+
+Chapters 4-8 inclusive.
 
