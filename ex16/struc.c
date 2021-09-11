@@ -4,16 +4,16 @@
 //required for printf
 #include <stdio.h>
 
-//not sure
+//not sure - used in create/destroy_person, checking return is not null pointer
 #include <assert.h>
 
-//not sure
+//not sure - needed for malloc?
 #include <stdlib.h>
 
-//not sure
+//not sure - string manipulation?
 #include <string.h>
 
-//creating a struct, which is like an object.  A person struct
+//creating a struct, which is like an object or database line
 //must have a name as character pointer to string, age and height as integer
 
 struct Person {
@@ -31,9 +31,12 @@ struct Person {
 struct Person *Person_create(char *name, int age, int height,
         int weight)
 {
+
+    //get a piece of correctly sized memory using malloc
     struct Person *who = malloc(sizeof(struct Person));
     assert(who != NULL);
 
+    //setting parts of the structure
     who->name = strdup(name);
     who->age = age;
     who->height = height;
@@ -42,14 +45,18 @@ struct Person *Person_create(char *name, int age, int height,
     return who;
 }
 
+//Remove a person from the instance
 void Person_destroy(struct Person *who)
 {
+    //checking in put is not null
     assert(who != NULL);
 
+    //free up memory used for person
     free(who->name);
     free(who);
 }
 
+//format and print a person
 void Person_print(struct Person *who)
 {
     printf("Name: %s\n", who->name);
@@ -74,13 +81,9 @@ int main(int argc, char *argv[])
 
     // make everyone age 20 years and print them again
     joe->age += 20;
-    joe->height -= 2;
-    joe->weight += 40;
     Person_print(joe);
 
     frank->age += 20;
-    frank->weight += 20;
-    free(frank);
     Person_print(frank);
 
     // destroy them both so we clean up
