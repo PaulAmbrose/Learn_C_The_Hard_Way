@@ -2,4 +2,4 @@ ex1 - amending compiler to compile C / diff command
 ex2 - basic makefiles
 ex3 - formatted printing
 ex4 - using the debugger - gdb, valgrind, lint
-ex16 - 
+ex15 - the pointer lexicon 
