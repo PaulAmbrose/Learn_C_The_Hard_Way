@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <assert.h>
+#include <stdlib.h>
+#include <string.h>
 
 //Playing with pointers, arrays and structs to ensure and demonstrate understanding
 
@@ -37,6 +40,32 @@ int main(int argc, char *argv[])
 	printf("The dereferenced value of test_char_array, pointed to by *pointer_test_char is: %s \n", *pointer_test_char);
 	printf("The final element in the test_array is: %d \n", pointer_test[4]);
 	printf("The final element in the test_char_array is: %s \n", pointer_test_char[4]);
+
+	//define a new data type, struct
+	struct  example_struct {
+		char *name;
+		int age;
+	};
+
+	//function to create a pointer to new data struct instances
+	struct example_struct *person_create(char *name, int age) {
+
+		struct example_struct *who = malloc(sizeof(struct example_struct));
+		assert(who != NULL);
+
+		who->name = strdup(name);
+		who->age = age;
+
+		return who;
+
+	}
+
+	//creat a person
+	struct example_struct *paul = person_create("Paul Ambrose", 41);
+
+	printf("Paul is located at memory %p:\n", paul);
+	printf("Paul's full name is %s\n", paul->name);
+
 
 	return 0;
 
