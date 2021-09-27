@@ -173,10 +173,10 @@ int main(int argc, char *argv[])
     char action = argv[2][0];
 
     //creates a struct pointer to address of result of database open function, passing in filename
-    //and action variables.  Action c = open file and make editable.  Else open file and make it 
+    //and action variables.  Action c = open file and make editable.  Else open file and make it
     //read only.
     struct Connection *conn = Database_open(filename, action);
-
+	printf("conn address is: %p\n", conn);
 
     //creates an integer variable called id and intilizes to zero
     int id = 0;
@@ -200,7 +200,6 @@ int main(int argc, char *argv[])
         case 's':
             if (argc != 6)
                 die("Need id, name, email to set");
-
             Database_set(conn, id, argv[4], argv[5]);
             Database_write(conn);
             break;
