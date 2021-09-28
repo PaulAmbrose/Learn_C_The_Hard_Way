@@ -3,3 +3,5 @@ ex2 - basic makefiles
 ex3 - formatted printing
 ex4 - using the debugger - gdb, valgrind, lint
 ex15 - the pointer lexicon 
+ex16 - pointer playground
+ex17 - pointers and structs
