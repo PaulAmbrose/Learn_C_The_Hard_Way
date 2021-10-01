@@ -1,21 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct Address
+{
+	int id;
+	int set;
+	char name[500];
+	char email[500];
+};
+
+struct database
+{
+	struct Address rows[100];
+};
+
+struct database_connection
+{
+	FILE *file;
+	struct database *db;
+};
+
 void quit_program()
 {
 	printf("Program exited\n\n");
 	exit(1);
 }
 
-char get_database_name()
+struct database_connection create_database()
 {
 
 	printf("Please enter database name(max 10 characters)\n");
 	printf(">>");
 
         char database_name[9];
-	scanf("%c", database_name);
-	return *database_name;
+	scanf("%s", database_name);
+
+	struct database_connection *new_db = malloc(sizeof(struct database_connection));
+	new_db->file = fopen(database_name, "w");
+
+	return new_db;
 
 }
 
@@ -37,13 +60,11 @@ char menu_and_choice()
 int main(void)
 {
 	char user_choice = menu_and_choice();
-	char database_name;
 
 	switch (user_choice){
 
 	case 'a':
-		database_name = get_database_name();
-		printf("Database name is %c \n", database_name);
+		create_database();
 		break;
 
 	case 'b':
