@@ -38,7 +38,18 @@ struct database_connection create_database()
 	struct database_connection *new_db = malloc(sizeof(struct database_connection));
 	new_db->file = fopen(database_name, "w");
 
-	return new_db;
+	printf("New data base %s created\n", database_name);
+
+	return *new_db;
+}
+
+void edit_database()
+{
+
+	printf("Please enter name of database to edit\n");
+	char database_name[9];
+        scanf("%s", database_name);
+	
 
 }
 
@@ -68,7 +79,7 @@ int main(void)
 		break;
 
 	case 'b':
-		printf("Run edit database script\n");
+		edit_database();
 		break;
 
 	case 'c':
@@ -83,6 +94,4 @@ int main(void)
 		printf("Error, command not recognised, please try again\n");
 		quit_program();
 	}
-
-
 }
